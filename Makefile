@@ -86,9 +86,7 @@ $(KPART_A64): $(BZIMAGE_A64)
 
 $(BZIMAGE_A64): $(INITFSZ_A64)
 	cp $(CONFDIR)/$(CONFIG_A64) kernel/.config
-	cd kernel/
-	git apply ../0001-arm64-dts-mediatek-Add-dts-for-hayato-rev5-sku0.patch
-	cd ..
+	git apply ../0001-arm64-dts-mediatek-Add-dts-for-hayato-rev5-sku0.patch --directory=kernel/
 	CROSS_COMPILE=$(CROSS) ARCH=arm64 make -C kernel olddefconfig
 	CROSS_COMPILE=$(CROSS) ARCH=arm64 make -C kernel
 	CROSS_COMPILE=$(CROSS) ARCH=arm64 make -C kernel dtbs_install INSTALL_DTBS_PATH=../$(WORKDIR)/dtbs
